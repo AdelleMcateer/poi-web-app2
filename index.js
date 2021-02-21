@@ -6,6 +6,10 @@ const Vision = require("@hapi/vision");
 const Handlebars = require("handlebars");
 const Cookie = require("@hapi/cookie");
 
+const env = require("dotenv");
+
+env.config();
+
 const server = Hapi.server({
   port: 3000,
   host: "localhost",
@@ -29,8 +33,8 @@ async function init() {
 
   server.auth.strategy("session", "cookie", {
     cookie: {
-      name: "point",
-      password: "password-should-be-32-characters",
+      name: process.env.cookie_name,
+      password: process.env.cookie_password,
       isSecure: false,
     },
     redirectTo: "/",
