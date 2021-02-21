@@ -1,21 +1,16 @@
 "use strict";
 
-const Donations = {
-  index: {
+const Points = {
+  home: {
     handler: function (request, h) {
-      return h.view("main", { title: "Welcome to Islands of Ireland" });
+      return h.view("home", { title: "Add an point of interest" });
     },
   },
-  signup: {
+  report: {
     handler: function (request, h) {
-      return h.view("signup", { title: "Sign up to add points of interest" });
-    },
-  },
-  login: {
-    handler: function (request, h) {
-      return h.view("login", { title: "Login to view your account and activity" });
+      return h.view("report", { title: "Points of interest so far" });
     },
   },
 };
 
-module.exports = Donations;
+module.exports = Points;
