@@ -4,6 +4,7 @@ const Hapi = require("@hapi/hapi");
 const Inert = require("@hapi/inert");
 const Vision = require("@hapi/vision");
 const Handlebars = require("handlebars");
+const Cookie = require("@hapi/cookie");
 
 const server = Hapi.server({
   port: 3000,
@@ -13,6 +14,7 @@ const server = Hapi.server({
 async function init() {
   await server.register(Inert);
   await server.register(Vision);
+  await server.register(Cookie);
   server.views({
     engines: {
       hbs: require("handlebars"),
@@ -25,6 +27,15 @@ async function init() {
     isCached: false,
   });
 
+  server.auth.strategy("session", "cookie", {
+    cookie: {
+      name: "point",
+      password: "password-should-be-32-characters",
+      isSecure: false,
+    },
+    redirectTo: "/",
+  });
+  server.auth.default("session");
   server.route(require("./routes"));
   await server.start();
   console.log(`Server running at: ${server.info.uri}`);
@@ -38,7 +49,7 @@ process.on("unhandledRejection", (err) => {
 server.bind({
   users: [],
   point: [],
-  currentUser: [],
+  //currentUser: [],
 });
 
 init();
