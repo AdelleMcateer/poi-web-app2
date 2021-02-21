@@ -1,0 +1,20 @@
+<div class="uk-margin uk-width-2xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+    <table class="uk-table">
+        <caption>
+            Points of interest to Date
+        </caption>
+        <thead>
+        <th>Island Name</th>
+        <th>Description</th>
+        </thead>
+        <tbody class="uk-text-left">
+        {{#each point}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{description}}</td>
+                <td>{{method}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
