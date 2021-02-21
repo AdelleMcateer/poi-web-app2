@@ -8,9 +8,18 @@ const Points = {
   },
   report: {
     handler: function (request, h) {
-      return h.view("report", { title: "Points of interest so far" });
+      return h.view("report", {
+        title: "Points of interest so far",
+        point: this.point,
+      });
+    },
+  },
+  point: {
+    handler: function (request, h) {
+      const data = request.payload;
+      this.point.push(data);
+      return h.redirect("/report");
     },
   },
 };
-
 module.exports = Points;

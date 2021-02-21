@@ -14,6 +14,8 @@ module.exports = [
   { method: "GET", path: "/home", config: Points.home },
   { method: "GET", path: "/report", config: Points.report },
 
+  { method: "POST", path: "/point", config: Points.point },
+
   {
     method: "GET",
     path: "/{param*}",

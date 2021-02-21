@@ -35,4 +35,8 @@ process.on("unhandledRejection", (err) => {
   process.exit(1);
 });
 
+server.bind({
+  point: [],
+});
+
 init();
