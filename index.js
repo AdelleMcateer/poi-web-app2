@@ -36,7 +36,9 @@ process.on("unhandledRejection", (err) => {
 });
 
 server.bind({
+  users: [],
   point: [],
+  currentUser: [],
 });
 
 init();

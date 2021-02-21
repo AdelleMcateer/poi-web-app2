@@ -6,6 +6,7 @@
         <thead>
         <th>Island Name</th>
         <th>Description</th>
+        <th>contributor</th>
         </thead>
         <tbody class="uk-text-left">
         {{#each point}}
@@ -13,6 +14,7 @@
                 <td>{{name}}</td>
                 <td>{{description}}</td>
                 <td>{{method}}</td>
+                <td>{{contributor.firstName}} {{contributor.lastName}}</td>
             </tr>
         {{/each}}
         </tbody>

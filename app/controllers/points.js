@@ -16,7 +16,8 @@ const Points = {
   },
   point: {
     handler: function (request, h) {
-      const data = request.payload;
+      let data = request.payload;
+      data.contributor = this.currentUser;
       this.point.push(data);
       return h.redirect("/report");
     },
