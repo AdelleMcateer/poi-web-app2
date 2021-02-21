@@ -50,10 +50,12 @@ process.on("unhandledRejection", (err) => {
   process.exit(1);
 });
 
-server.bind({
-  users: [],
-  point: [],
-  //currentUser: [],
-});
+require("./app/models/db");
+
+//server.bind({
+//users: [],
+//point: [],
+//currentUser: [],
+//});
 
 init();

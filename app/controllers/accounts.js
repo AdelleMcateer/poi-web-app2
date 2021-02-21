@@ -1,5 +1,8 @@
 "use strict";
 
+const User = require("../models/user");
+const Boom = require("@hapi/boom");
+
 const Accounts = {
   index: {
     auth: false,
@@ -13,12 +16,19 @@ const Accounts = {
       return h.view("signup", { title: "Sign up to add points of Interest" });
     },
   },
+
   signup: {
     auth: false,
-    handler: function (request, h) {
-      const user = request.payload;
-      this.users[user.email] = user;
-      request.cookieAuth.set({ id: user.email });
+    handler: async function (request, h) {
+      const payload = request.payload;
+      const newUser = new User({
+        firstName: payload.firstName,
+        lastName: payload.lastName,
+        email: payload.email,
+        password: payload.password,
+      });
+      const user = await newUser.save();
+      request.cookieAuth.set({ id: user.id });
       return h.redirect("/home");
     },
   },
@@ -29,17 +39,26 @@ const Accounts = {
       return h.view("login", { title: "Login to Islands of Ireland" });
     },
   },
+
   login: {
     auth: false,
-    handler: function (request, h) {
-      const user = request.payload;
-      if (user.email in this.users && user.password === this.users[user.email].password) {
-        request.cookieAuth.set({ id: user.email });
+    handler: async function (request, h) {
+      const { email, password } = request.payload;
+      try {
+        let user = await User.findByEmail(email);
+        if (!user) {
+          const message = "Email address is not registered";
+          throw Boom.unauthorized(message);
+        }
+        user.comparePassword(password);
+        request.cookieAuth.set({ id: user.id });
         return h.redirect("/home");
+      } catch (err) {
+        return h.view("login", { errors: [{ message: err.message }] });
       }
-      return h.redirect("/");
     },
   },
+
   logout: {
     handler: function (request, h) {
       request.cookieAuth.clear();
