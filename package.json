@@ -17,12 +17,13 @@
   },
   "homepage": "https://github.com/AdelleMcateer/poi-web#readme",
   "dependencies": {
-    "@hapi/hapi": "^20.1.0"
+    "@hapi/hapi": "^20.1.0",
+    "@hapi/inert": "^6.0.3"
   },
   "devDependencies": {
     "prettier": "^2.2.1"
   },
   "prettier": {
-  "printWidth": 120
-}
+    "printWidth": 120
+  }
 }
