@@ -1,0 +1,35 @@
+{
+  "name": "poi-web",
+  "version": "1.0.0",
+  "description": "A poi application for Irish islands",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdelleMcateer/poi-web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdelleMcateer/poi-web/issues"
+  },
+  "homepage": "https://github.com/AdelleMcateer/poi-web#readme",
+  "dependencies": {
+    "@hapi/boom": "^9.1.1",
+    "@hapi/cookie": "^11.0.2",
+    "@hapi/hapi": "^20.1.0",
+    "@hapi/inert": "^6.0.3",
+    "@hapi/vision": "^6.0.1",
+    "dotenv": "^8.2.0",
+    "handlebars": "^4.7.7",
+    "mongoose": "^5.11.17"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  },
+  "prettier": {
+    "printWidth": 120
+  }
+}
