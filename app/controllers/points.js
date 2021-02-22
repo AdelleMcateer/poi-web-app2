@@ -1,5 +1,8 @@
 "use strict";
 
+const Poi = require("../models/poi");
+const User = require("../models/user");
+
 const Points = {
   home: {
     handler: function (request, h) {
@@ -7,19 +10,25 @@ const Points = {
     },
   },
   report: {
-    handler: function (request, h) {
+    handler: async function (request, h) {
+      const point = await Poi.find().populate("contributor").lean();
       return h.view("report", {
         title: "Points of interest so far",
-        point: this.point,
+        point: point,
       });
     },
   },
   point: {
-    handler: function (request, h) {
+    handler: async function (request, h) {
+      const id = request.auth.credentials.id;
+      const user = await User.findById(id);
       const data = request.payload;
-      var contributorEmail = request.auth.credentials.id;
-      data.contributor = this.users[contributorEmail];
-      this.point.push(data);
+      const newPoi = new Poi({
+        name: data.name,
+        description: data.description,
+        contributor: user._id,
+      });
+      await newPoi.save();
       return h.redirect("/report");
     },
   },
