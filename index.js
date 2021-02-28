@@ -5,8 +5,10 @@ const Inert = require("@hapi/inert");
 const Vision = require("@hapi/vision");
 const Handlebars = require("handlebars");
 const Cookie = require("@hapi/cookie");
-
 const env = require("dotenv");
+
+// Testing weather api using week 2 labs
+const axios = require("axios");
 
 env.config();
 

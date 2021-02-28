@@ -32,5 +32,32 @@ const Points = {
       return h.redirect("/report");
     },
   },
+
+  showPoints: {
+    handler: async function (request, h) {
+      try {
+        const id = request.auth.credentials.id;
+        const user = await User.findById(id).lean();
+        return h.view("updatepoint", { title: "Islands of Ireland Settings", user: user });
+      } catch (err) {
+        return h.view("home", { errors: [{ message: err.message }] });
+      }
+    },
+  },
+
+  updatePoint: {
+    handler: async function (request, h) {
+      const id = request.auth.credentials.id;
+      const user = await User.findById(id);
+      const data = request.payload;
+      const updatepoint = new Poi({
+        name: data.name,
+        description: data.description,
+        contributor: user._id,
+      });
+      await updatepoint.save();
+      return h.redirect("/report");
+    },
+  },
 };
 module.exports = Points;

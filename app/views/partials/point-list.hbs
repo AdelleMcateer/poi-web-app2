@@ -6,15 +6,19 @@
         <thead>
         <th>Island Name</th>
         <th>Description</th>
-        <th>contributor</th>
+        <th>Contributor</th>
+        <th>Update</th>
+        <th>Delete</th>
         </thead>
         <tbody class="uk-text-left">
         {{#each point}}
             <tr>
                 <td>{{name}}</td>
                 <td>{{description}}</td>
-                <td>{{method}}</td>
-                <td> {{contributor.firstName}} {{contributor.lastName}} </td>
+                <td>{{contributor.firstName}} {{contributor.lastName}}</td>
+                <td>
+                    <a href="/updatepoint"><button class=>Update</button></a>
+                </td>
             </tr>
         {{/each}}
         </tbody>
