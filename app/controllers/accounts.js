@@ -1,6 +1,7 @@
 "use strict";
 
 const User = require("../models/user");
+const Admin = require("../models/admin");
 const Boom = require("@hapi/boom");
 
 const Accounts = {
@@ -51,17 +52,27 @@ const Accounts = {
 
   login: {
     auth: false,
+
     handler: async function (request, h) {
       const { email, password } = request.payload;
       try {
         let user = await User.findByEmail(email);
+        let admin = await Admin.findByEmail(email);
         if (!user) {
           const message = "Email address is not registered";
           throw Boom.unauthorized(message);
+
+          user.comparePassword(password);
+          request.cookieAuth.set({ id: user.id });
+          return h.redirect("/home");
+        } else if (!admin) {
+          const message = "Email address is not registered";
+          throw Boom.unauthorized(message);
+
+          admin.comparePassword(password);
+          request.cookieAuth.set({ id: admin.id });
+          return h.redirect("/home");
         }
-        user.comparePassword(password);
-        request.cookieAuth.set({ id: user.id });
-        return h.redirect("/home");
       } catch (err) {
         return h.view("login", { errors: [{ message: err.message }] });
       }
