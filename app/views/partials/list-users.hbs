@@ -1,0 +1,21 @@
+<div class="uk-margin uk-width-2xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+    <table class="uk-table">
+        <caption>
+            Islands of Ireland Admin Dashboard
+        </caption>
+        <thead>
+        <th> </th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        </thead>
+        <tbody class="uk-text-left">
+        {{#each users}}
+            <tr>
+                <td>{{user.firstName}} {{user.lastName}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
