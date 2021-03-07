@@ -7,7 +7,7 @@ const Handlebars = require("handlebars");
 const Cookie = require("@hapi/cookie");
 const Joi = require("@hapi/joi");
 require("./app/models/db");
-//const env = require("dotenv");
+const env = require("dotenv");
 
 const dotenv = require("dotenv");
 
@@ -19,8 +19,6 @@ if (result.error) {
 
 // Testing weather api using week 2 labs
 const axios = require("axios");
-
-//env.config();
 
 const server = Hapi.server({
   port: process.env.PORT || 3000,
@@ -60,11 +58,5 @@ process.on("unhandledRejection", (err) => {
   console.log(err);
   process.exit(1);
 });
-
-//server.bind({
-//users: [],
-//point: [],
-//currentUser: [],
-//});
 
 init();
