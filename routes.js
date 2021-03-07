@@ -19,7 +19,7 @@ module.exports = [
   { method: "POST", path: "/point", config: Points.point },
 
   { method: "GET", path: "/updatepoint/{id}", config: Points.showPoint },
-  { method: "POST", path: "/updatepoi/{id}", config: Points.updatePoi },
+  { method: "POST", path: "/updatePoint/{id}", config: Points.updatePoint },
   { method: "GET", path: "/deletepoint/{id}", config: Points.deletePoint },
 
   {

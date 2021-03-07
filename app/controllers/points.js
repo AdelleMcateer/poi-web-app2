@@ -46,18 +46,18 @@ const Points = {
       }
     },
   },
-  updatePoi: {
+  updatePoint: {
     handler: async function (request, h) {
       try {
-        const pointEdit = request.payload;
+        const updatePoint = request.payload;
         const id = request.params.id;
         const point = await Poi.findById(id);
-        point.name = pointEdit.name;
-        point.description = pointEdit.description;
+        point.name = updatePoint.name;
+        point.description = updatePoint.description;
 
         await point.save();
 
-        return h.redirect("/point-list/" + point._id);
+        return h.redirect("/report");
       } catch (err) {
         return h.view("main", { errors: [{ message: err.message }] });
       }
