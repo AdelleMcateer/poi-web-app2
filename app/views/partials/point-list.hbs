@@ -17,7 +17,10 @@
                 <td>{{description}}</td>
                 <td>{{contributor.firstName}} {{contributor.lastName}}</td>
                 <td>
-                    <a href="/updatepoint"><button class=>Update</button></a>
+                    <a href="/updatepoint/{{_id}}"><button class=>Update</button></a>
+                </td>
+                <td>
+                    <a href="/deletepoint/{{_id}}"><button class=>Delete</button></a>
                 </td>
             </tr>
         {{/each}}

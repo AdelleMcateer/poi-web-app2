@@ -2,6 +2,7 @@
 
 const Poi = require("../models/poi");
 const User = require("../models/user");
+const Joi = require("@hapi/joi");
 
 const Points = {
   home: {
@@ -11,6 +12,7 @@ const Points = {
   },
   report: {
     handler: async function (request, h) {
+      const user = await User.findById(request.auth.credentials.id);
       const point = await Poi.find().populate("contributor").lean();
       return h.view("report", {
         title: "Points of interest so far",
@@ -33,29 +35,40 @@ const Points = {
     },
   },
 
-  showPoints: {
+  showPoint: {
     handler: async function (request, h) {
       try {
-        const id = request.auth.credentials.id;
-        const user = await User.findById(id).lean();
-        return h.view("updatepoint", { title: "Islands of Ireland Settings", user: user });
+        const id = request.params.id;
+        const point = await Poi.findById(id);
+        return h.view("updatepoint", { title: "Islands of Ireland - Update", point: point });
       } catch (err) {
-        return h.view("home", { errors: [{ message: err.message }] });
+        return h.view("report", { errors: [{ message: err.message }] });
+      }
+    },
+  },
+  updatePoi: {
+    handler: async function (request, h) {
+      try {
+        const pointEdit = request.payload;
+        const id = request.params.id;
+        const point = await Poi.findById(id);
+        point.name = pointEdit.name;
+        point.description = pointEdit.description;
+
+        await point.save();
+
+        return h.redirect("/point-list/" + point._id);
+      } catch (err) {
+        return h.view("main", { errors: [{ message: err.message }] });
       }
     },
   },
 
-  updatePoint: {
+  deletePoint: {
     handler: async function (request, h) {
-      const id = request.auth.credentials.id;
-      const user = await User.findById(id);
-      const data = request.payload;
-      const updatepoint = new Poi({
-        name: data.name,
-        description: data.description,
-        contributor: user._id,
-      });
-      await updatepoint.save();
+      const id = request.params.id;
+      const point = await Poi.findById(id);
+      await point.delete();
       return h.redirect("/report");
     },
   },
