@@ -17,9 +17,6 @@ if (result.error) {
   process.exit(1);
 }
 
-// Testing weather api using week 2 labs
-const axios = require("axios");
-
 const server = Hapi.server({
   port: process.env.PORT || 3000,
 });
