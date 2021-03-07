@@ -5,22 +5,27 @@ const Inert = require("@hapi/inert");
 const Vision = require("@hapi/vision");
 const Handlebars = require("handlebars");
 const Cookie = require("@hapi/cookie");
+const Joi = require("@hapi/joi");
+require("./app/models/db");
 const env = require("dotenv");
 
-// Testing weather api using week 2 labs
-const axios = require("axios");
+const dotenv = require("dotenv");
 
-env.config();
+const result = dotenv.config();
+if (result.error) {
+  console.log(result.error.message);
+  process.exit(1);
+}
 
 const server = Hapi.server({
-  port: 3000,
-  host: "localhost",
+  port: process.env.PORT || 3000,
 });
 
 async function init() {
   await server.register(Inert);
   await server.register(Vision);
   await server.register(Cookie);
+  server.validator(require("@hapi/joi"));
   server.views({
     engines: {
       hbs: require("handlebars"),
@@ -32,7 +37,6 @@ async function init() {
     layout: true,
     isCached: false,
   });
-
   server.auth.strategy("session", "cookie", {
     cookie: {
       name: process.env.cookie_name,
@@ -51,13 +55,5 @@ process.on("unhandledRejection", (err) => {
   console.log(err);
   process.exit(1);
 });
-
-require("./app/models/db");
-
-//server.bind({
-//users: [],
-//point: [],
-//currentUser: [],
-//});
 
 init();
