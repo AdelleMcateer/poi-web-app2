@@ -1,4 +1,4 @@
-<div class="uk-margin uk-width-2xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+<div class="uk-margin uk-width-3xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
     <table class="uk-table">
         <caption>
             Points of interest to Date
@@ -7,6 +7,8 @@
         <th>Island Name</th>
         <th>Description</th>
         <th>Contributor</th>
+        <th>Category</th>
+        <th>Image</th>
         <th>Update</th>
         <th>Delete</th>
         </thead>
@@ -16,11 +18,13 @@
                 <td>{{name}}</td>
                 <td>{{description}}</td>
                 <td>{{contributor.firstName}} {{contributor.lastName}}</td>
+                <td> {{category.category}} </td>
+                <td><img class="ui large image" src="{{image}}"></td>
                 <td>
-                    <a href="/updatepoint/{{_id}}"><button class=>Update</button></a>
+                    <a href="/updatepoint/{{_id}}"><button class="submit uk-button uk-button-primary uk-button-small uk-width-1-1">Update</button></a>
                 </td>
                 <td>
-                    <a href="/deletepoint/{{_id}}"><button class=>Delete</button></a>
+                    <a href="/deletepoint/{{_id}}"><button class="submit uk-button uk-button-primary uk-button-small uk-width--1">Delete</button></a>
                 </td>
             </tr>
         {{/each}}

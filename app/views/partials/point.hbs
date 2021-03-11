@@ -3,27 +3,46 @@
         <div class="uk-grid uk-grid-stack">
             <div class="uk-width-1-2@m">
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="form-stacked-text">Add Point of Interest</label>
+                    <label class="uk-form-label" for="form-stacked-text">Enter Name</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-stacked-text" type="text" name="name" placeholder="Island Name" />
-                    </div>
-                    <div class="uk-form-controls">
-                        <input class="uk-input" id="form-stacked-text" type="text" name="description" placeholder="Description" />
+                        <input class="uk-input" id="form-stacked-text" type="Name" name="name" placeholder="Name..." />
                     </div>
                 </div>
                 <div class="uk-margin">
-                    <div class="uk-form-label"></div>
+                    <div class="uk-form-label">Description</div>
                     <div class="uk-form-controls">
-                        <label><input class="uk-radio" type="radio" name="type" value="inhabited" /> Inhabited </label><br />
-                        <label><input class="uk-radio" type="radio" name="type" value="uninhabited" /> Uninhabited </label>
+                        <input class="uk-input" id="form-stacked-text" type="Description" name="description" placeholder="Description..." />
                     </div>
                 </div>
             </div>
             <div class=" uk-width-1-2@m">
                 <div class="uk-margin">
-                    <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">Add Point</button>
+                    <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">Add</button>
                 </div>
             </div>
+
+                <div class="grouped inline fields">
+                    <h3> Select Category </h3>
+                    {{#each categories }}
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="category" value="{{category}}">
+                                <label>{{category}}</label>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            <form class="uk-form-horizontal" action="/uploadfile" method="POST" enctype="multipart/form-data">
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-horizontal-text">Select Image</label>
+                    <div class="uk-form-controls">
+                        <input type="file" class="uk-input" name="imagefile" accept="image/png, image/jpeg">
+                    </div>
+                </div>
+                <p uk-margin>
+                    <input type="submit" value="Upload" class="uk-button uk-button-default">
+                </p>
+            </form>
         </div>
     </form>
 </div>

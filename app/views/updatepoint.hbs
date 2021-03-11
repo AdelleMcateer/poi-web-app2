@@ -1,5 +1,8 @@
-{{> title-card title="Islands of Ireland" subTitle="Update a point..."}}
-{{> main-menu _id="updatepoint"}}
+<div class="uk-flex uk-flex-center uk-flex-middle uk-grid-small" uk-grid>
+    {{> title-card title="Islands of Ireland" subTitle="Update a point..."}}
+    {{> main-menu _id="updatepoint"}}
+</div>
+
 
 <div class="uk-margin uk-width-2xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
     <form class="uk-form-stacked uk-text-left" action="/updatePoint/{{point._id}}" method="POST">
@@ -11,7 +14,7 @@
                         <input class="{{point.name}}uk-input" id="form-stacked-text" type="text" name="name" placeholder="Island Name" />
                     </div>
                     <div class="uk-form-controls">
-                        <input class="{{point.description}}uk-input" id="form-stacked-text"  type="text" name="description" placeholder="Description" />
+                        <input class="{{point.description}}uk-input" id="form-stacked-text" type="text" name="description" placeholder="Description" />
                     </div>
                 </div>
                 <div class="uk-margin">
@@ -24,10 +27,12 @@
             </div>
             <div class=" uk-width-1-2@m">
                 <div class="uk-margin">
-                    <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">Update Point</button>
+                    <button class="submit uk-button uk-button-primary uk-button-large uk-width--1">Update Point</button>
                 </div>
+            </div>
             </div>
         </div>
     </form>
     {{> error}}
 </div>
+
