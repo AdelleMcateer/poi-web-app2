@@ -11,4 +11,4 @@ const categorySchema = new Schema({
   },
 });
 
-module.exports = Mongoose.model("Category", donationSchema);
+module.exports = Mongoose.model("Category", categorySchema);
