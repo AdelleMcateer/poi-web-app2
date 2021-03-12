@@ -1,14 +1,15 @@
 "use strict";
 
 const User = require("../models/user");
-const Admin = require("../models/admin");
 const Boom = require("@hapi/boom");
+const Point = require("../models/poi");
 
-const admin = {
-  home: {
+const Admin = {
+  adminHome: {
     handler: async function (request, h) {
       try {
         const users = await User.find();
+        const id = request.auth.credentials.id;
         return h.view("admin-home", {
           title: "Admin Home",
           users: users,
@@ -21,15 +22,15 @@ const admin = {
   deleteUser: {
     handler: async function (request, h) {
       try {
-        User.findByIdAndRemove(request.params.id, function (err) {
-          if (err) {
-            console.log("Error: User not deleted");
-          } else {
-            console.log("Success: User deleted " + request.params.id);
-          }
+        const userId = request.params.id;
+        console.log(userId);
+        await User.remove({ _id: request.params.id });
+        const users = await User.find();
+        return h.view("admin-home", {
+          title: "List of Users",
+          users: users,
         });
-        return h.redirect("/admin-home");
-      } catch (e) {
+      } catch (err) {
         return h.view("main", { errors: [{ message: e.message }] });
       }
     },

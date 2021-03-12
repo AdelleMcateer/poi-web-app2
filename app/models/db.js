@@ -8,6 +8,14 @@ const Mongoose = require("mongoose");
 Mongoose.set("useNewUrlParser", true);
 Mongoose.set("useUnifiedTopology", true);
 
+async function seed() {
+  var seeder = require("mais-mongoose-seeder")(Mongoose);
+  const data = require("./seed-data.json");
+  const Point = require("./poi");
+  const User = require("./user");
+  const dbData = await seeder.seed(data, { dropDatabase: false, dropCollections: true });
+  console.log(dbData);
+}
 Mongoose.connect(process.env.db);
 const db = Mongoose.connection;
 

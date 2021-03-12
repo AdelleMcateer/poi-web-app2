@@ -3,17 +3,22 @@
         <caption>
             Islands of Ireland Admin Dashboard
         </caption>
+        <th> {{title}} </th>
+        <p>List Users</p>
         <thead>
-        <th> </th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>User ID</th>
+        <th>Delete User</th>
         <th></th>
         </thead>
         <tbody class="uk-text-left">
         {{#each users}}
             <tr>
                 <td>{{user.firstName}} {{user.lastName}}</td>
+                <td> {{email}} </td>
+                <td> {{id}} </td>
+                <td> <a href="/deleteuser/{{id}}"> <i class="large trash alternate icon"></i></td>
             </tr>
         {{/each}}
         </tbody>
