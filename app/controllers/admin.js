@@ -3,16 +3,23 @@
 const User = require("../models/user");
 const Boom = require("@hapi/boom");
 const Point = require("../models/poi");
+const Utils = require("../utils/isAdmin");
 
 const Admin = {
   adminHome: {
+    auth: { scope: "admin" },
     handler: async function (request, h) {
       try {
-        const users = await User.find();
+        const user = await User.findById(id).lean();
         const id = request.auth.credentials.id;
+        const users = await User.find({ scope: "user" }).lean().sort("lastName");
+        const scope = user.scope;
+        const isadmin = Utils.isAdmin(scope);
+
         return h.view("admin-home", {
-          title: "Admin Home",
+          title: "Admin Home - View Users",
           users: users,
+          isadmin: isadmin,
         });
       } catch (e) {
         return h.view("main", { errors: [{ message: e.message }] });
@@ -20,6 +27,7 @@ const Admin = {
     },
   },
   deleteUser: {
+    auth: { scope: ["admin"] },
     handler: async function (request, h) {
       try {
         const userId = request.params.id;
