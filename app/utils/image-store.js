@@ -3,7 +3,11 @@
 const cloudinary = require("cloudinary");
 const fs = require("fs");
 const util = require("util");
-const writeFile = util.promisify(fs.writeFile);
+const writeFile = util.promisify(fs.writeFileSync);
+/*const writeFile = util.promisify(fs.writeFile);*/
+const ObjectId = require("mongodb").ObjectID;
+const Poi = require("../models/poi");
+const Image = require("../models/image");
 
 const ImageStore = {
   configure: function () {
@@ -21,8 +25,9 @@ const ImageStore = {
   },
 
   uploadImage: async function (imagefile) {
-    await writeFile("./public/temp.img", imagefile);
-    await cloudinary.uploader.upload("./public/temp.img");
+    await writeFile("./public/temp.img", "imagefile");
+    const response = await cloudinary.uploader.upload("./public/temp.img");
+    return response;
   },
 
   deleteImage: async function (id) {

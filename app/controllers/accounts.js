@@ -56,7 +56,10 @@ const Accounts = {
           scope: ["user"],
         });
         user = await newUser.save();
-        request.cookieAuth.set({ id: user.id });
+        request.cookieAuth.set({
+          id: user.id,
+          scope: user.scope,
+        });
         return h.redirect("/home");
       } catch (err) {
         return h.view("signup", { errors: [{ message: err.message }] });
@@ -125,7 +128,8 @@ const Accounts = {
         const user = await User.findById(id).lean();
         const scope = user.scope;
         const isadmin = Utils.isAdmin(scope);
-        return h.view("settings", { title: "Islands of Ireland Settings", user: user });
+
+        return h.view("settings", { title: "Islands of Ireland Settings", user: user, isadmin: isadmin });
       } catch (err) {
         return h.view("login", { errors: [{ message: err.message }] });
       }

@@ -29,7 +29,9 @@ module.exports = [
   { method: "GET", path: "/deleteimage/{id}", config: Gallery.deleteImage },
 
   { method: "GET", path: "/admin-home", config: Admin.adminHome },
-  { method: "GET", path: "/deleteuser/{id}", config: Admin.deleteUser },
+  { method: "GET", path: "/view-user/{id}", config: Admin.viewUser },
+  { method: "POST", path: "/view-user/{id}", config: Admin.viewUser },
+  { method: "GET", path: "/delete-user/{id}", config: Admin.deleteUser },
 
   {
     method: "GET",

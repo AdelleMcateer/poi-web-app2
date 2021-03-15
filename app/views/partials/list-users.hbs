@@ -1,12 +1,11 @@
 <div class="uk-margin uk-width-2xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
     <table class="uk-table">
         <caption>
-            Islands of Ireland Admin Dashboard
+            Islands of Ireland Admin Dashboard - List Users
         </caption>
-        <th> {{title}} </th>
-        <p>List Users</p>
         <thead>
-        <th>Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
         <th>Email</th>
         <th>User ID</th>
         <th>Delete User</th>
@@ -15,10 +14,11 @@
         <tbody class="uk-text-left">
         {{#each users}}
             <tr>
-                <td>{{user.firstName}} {{user.lastName}}</td>
-                <td> {{email}} </td>
-                <td> {{id}} </td>
-                <td> <a href="/deleteuser/{{id}}"> <i class="large trash alternate icon"></i></td>
+                <td>{{firstName}}</td>
+                <td>{{lastName}}</td>
+                <td>{{email}}</td>
+                <th>{{id}}</th>
+                <td><a href="/delete-user/{{_id}}" uk-icon="icon: trash"></a></td>
             </tr>
         {{/each}}
         </tbody>

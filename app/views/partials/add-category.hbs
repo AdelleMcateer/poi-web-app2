@@ -1,0 +1,11 @@
+<section class="ui raised very padded container segment">
+    <h2><i class="fas fa-upload fa-3x" style="color:rgb(153, 196, 74)" title="Add Category" pos="bottom" uk-tooltip></i></h2>
+    <form class="ui form" action="/add-category" method="POST">
+        <div class="field">
+            <label>Category Name</label>
+            <input type="text" name="name" placeholder="Type your poi here" required>
+        </div>
+        <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">Add</button>
+    </form>
+    {{> error }}
+</section>

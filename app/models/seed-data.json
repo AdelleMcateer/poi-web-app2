@@ -21,8 +21,7 @@
     "one": {
       "name": "Tory Island",
       "description": "A well known island of the coast of Donegal.",
-      "contributor": "->users.homer",
-      "image": ""
+      "contributor": "->users.homer"
     }
   }
 }
