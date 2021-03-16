@@ -1,14 +1,15 @@
 "use strict";
 
+const Boom = require("@hapi/boom");
 const Mongoose = require("mongoose");
 const Schema = Mongoose.Schema;
-const Boom = require("@hapi/boom");
 
 const userSchema = new Schema({
   firstName: String,
   lastName: String,
   email: String,
   password: String,
+  userScope: String,
 });
 
 userSchema.statics.findByEmail = function (email) {

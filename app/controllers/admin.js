@@ -1,36 +1,68 @@
 "use strict";
 
-const User = require("../models/user");
-const Admin = require("../models/admin");
 const Boom = require("@hapi/boom");
+const Joi = require("@hapi/joi");
+const Point = require("../models/poi");
+const User = require("../models/user");
+const Utils = require("../utils/isAdmin");
 
-const admin = {
-  home: {
+const Admin = {
+  adminHome: {
+    auth: { scope: "admin" },
     handler: async function (request, h) {
       try {
-        const users = await User.find();
+        const id = request.auth.credentials.id;
+        const user = await User.findById(id).lean();
+        const users = await User.find({ scope: "user" }).lean().sort("lastName");
+        const scope = user.scope;
+        const isadmin = Utils.isAdmin(scope);
+
         return h.view("admin-home", {
-          title: "Admin Home",
+          title: "Admin Home - View Users",
           users: users,
+          isadmin: isadmin,
         });
-      } catch (e) {
-        return h.view("main", { errors: [{ message: e.message }] });
+      } catch (err) {
+        return h.view("login", { errors: [{ message: e.message }] });
       }
     },
   },
+
   deleteUser: {
+    auth: { scope: ["admin"] },
     handler: async function (request, h) {
       try {
-        User.findByIdAndRemove(request.params.id, function (err) {
-          if (err) {
-            console.log("Error: User not deleted");
-          } else {
-            console.log("Success: User deleted " + request.params.id);
-          }
+        const id = request.params.id;
+        const user = await User.findById(id).lean();
+        const poi = await Point.find({ user: user });
+
+        await User.findByIdAndDelete(id);
+        return h.view("/admin-home", {
+          title: "Admin Home - View Users",
+          users: users,
         });
-        return h.redirect("/admin-home");
-      } catch (e) {
-        return h.view("main", { errors: [{ message: e.message }] });
+      } catch (err) {
+        return h.view("admin-home", { errors: [{ message: e.message }] });
+      }
+    },
+  },
+  viewUser: {
+    auth: { scope: "admin" },
+    handler: async function (request, h) {
+      try {
+        const id = request.params.id;
+        const user = await User.findById(id);
+        let poi_list;
+        return h.view("list-users", {
+          title: "View User",
+          userid: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          point: point - list,
+          isadmin: true,
+        });
+      } catch (err) {
+        return h.view("admin-home", { errors: [{ message: err.message }] });
       }
     },
   },

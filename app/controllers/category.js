@@ -1,11 +1,22 @@
 "use strict";
+
 const Category = require("../models/category");
+const Point = require("../models/poi");
 const User = require("../models/user");
 
 const Category = {
-  home: {
+  addcategory: {
     handler: async function (request, h) {
-      return h.view("home", { title: "Make a Donation", candidates: candidates });
+      try {
+        const data = request.payload;
+        const newCategory = new Category({
+          categoryName: data.category,
+        });
+        await newCategory.save();
+        return h.redirect("/admin-home");
+      } catch (err) {
+        return h.view("main", { errors: [{ message: err.message }] });
+      }
     },
   },
 };

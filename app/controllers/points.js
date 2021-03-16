@@ -1,13 +1,26 @@
 "use strict";
 
-const Poi = require("../models/poi");
-const User = require("../models/user");
+const ImageStore = require("../utils/image-store");
+const Image = require("../models/image");
 const Joi = require("@hapi/joi");
+const Poi = require("../models/poi");
+const Utils = require("../utils/isAdmin");
+const User = require("../models/user");
 
 const Points = {
   home: {
     handler: function (request, h) {
       return h.view("home", { title: "Add an point of interest" });
+    },
+  },
+  adminhome: {
+    handler: async function (request, h) {
+      const users = await User.find().populate().lean();
+      return h.view("admin-menu", {
+        title: "Admin Home",
+        //categories: categories,
+        users: users,
+      });
     },
   },
   report: {
@@ -25,12 +38,19 @@ const Points = {
       const id = request.auth.credentials.id;
       const user = await User.findById(id);
       const data = request.payload;
+      const file = request.payload.imagefile;
+
       const newPoi = new Poi({
         name: data.name,
         description: data.description,
         contributor: user._id,
       });
       await newPoi.save();
+
+      /*Image upload to cloudinary*/
+      const imageFile = data.image;
+      await ImageStore.uploadImage(imageFile, newPoi._id);
+
       return h.redirect("/report");
     },
   },

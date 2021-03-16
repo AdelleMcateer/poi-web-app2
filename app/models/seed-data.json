@@ -1,0 +1,27 @@
+{
+  "users": {
+    "_model": "User",
+    "homer": {
+      "firstName": "Homer",
+      "lastName": "Simpson",
+      "email": "homer@simpson.com",
+      "password": "secret",
+      "userScope": "user"
+    },
+    "bart": {
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "password": "secret",
+      "userScope": "admin"
+    }
+  },
+  "point": {
+    "_model": "poi",
+    "one": {
+      "name": "Tory Island",
+      "description": "A well known island of the coast of Donegal.",
+      "contributor": "->users.homer"
+    }
+  }
+}
