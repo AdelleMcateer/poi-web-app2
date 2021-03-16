@@ -13,6 +13,16 @@ const Points = {
       return h.view("home", { title: "Add an point of interest" });
     },
   },
+  adminhome: {
+    handler: async function (request, h) {
+      const users = await User.find().populate().lean();
+      return h.view("admin-menu", {
+        title: "Admin Home",
+        //categories: categories,
+        users: users,
+      });
+    },
+  },
   report: {
     handler: async function (request, h) {
       const user = await User.findById(request.auth.credentials.id);

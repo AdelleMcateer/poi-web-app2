@@ -2,7 +2,6 @@
 const User = require("../models/user");
 const Boom = require("@hapi/boom");
 const Joi = require("@hapi/joi");
-const Utils = require("../utils/isAdmin");
 
 const Accounts = {
   index: {
@@ -17,7 +16,6 @@ const Accounts = {
       return h.view("signup", { title: "Sign up to add points of Interest" });
     },
   },
-
   signup: {
     auth: false,
     validate: {
@@ -53,12 +51,11 @@ const Accounts = {
           lastName: payload.lastName,
           email: payload.email,
           password: payload.password,
-          scope: ["user"],
+          userScope: "standard",
         });
         user = await newUser.save();
         request.cookieAuth.set({
           id: user.id,
-          scope: user.scope,
         });
         return h.redirect("/home");
       } catch (err) {
@@ -66,14 +63,20 @@ const Accounts = {
       }
     },
   },
-
   showLogin: {
     auth: false,
     handler: function (request, h) {
       return h.view("login", { title: "Login to Islands of Ireland" });
     },
   },
-
+  homeView: {
+    handler: async function (request, h) {
+      const id = request.auth.credentials.id;
+      const user = await User.findById(id).lean();
+      if (user.userScope == "standard") return h.redirect("/home");
+      else return h.redirect("/admin-home");
+    },
+  },
   login: {
     auth: false,
     validate: {
@@ -98,7 +101,6 @@ const Accounts = {
       const { email, password } = request.payload;
       try {
         let user = await User.findByEmail(email);
-
         if (!user) {
           const message = "Email address is not registered";
           throw Boom.unauthorized(message);

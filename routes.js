@@ -28,10 +28,12 @@ module.exports = [
   { method: "POST", path: "/uploadfile", config: Gallery.uploadFile },
   { method: "GET", path: "/deleteimage/{id}", config: Gallery.deleteImage },
 
-  { method: "GET", path: "/admin-home", config: Admin.adminHome },
-  { method: "GET", path: "/view-user/{id}", config: Admin.viewUser },
-  { method: "POST", path: "/view-user/{id}", config: Admin.viewUser },
-  { method: "GET", path: "/delete-user/{id}", config: Admin.deleteUser },
+  { method: "GET", path: "/home-view", config: Accounts.homeView },
+  { method: "GET", path: "/admin-home", config: Points.adminhome },
+
+  //{ method: "GET", path: "/view-user/{id}", config: Admin.viewUser },
+  //{ method: "POST", path: "/view-user/{id}", config: Admin.viewUser },
+  //{ method: "GET", path: "/delete-user/{id}", config: Admin.deleteUser },
 
   {
     method: "GET",
