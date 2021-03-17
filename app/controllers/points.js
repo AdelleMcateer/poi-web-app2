@@ -39,11 +39,18 @@ const Points = {
       const user = await User.findById(id);
       const data = request.payload;
       const file = request.payload.imagefile;
+      const image = await ImageStore.uploadImage(request.payload.imagefile);
+      const newImage = new Image({
+        imageURL: image.url,
+      });
+      await newImage.save();
 
       const newPoi = new Poi({
         name: data.name,
         description: data.description,
         contributor: user._id,
+        category: data.category,
+        image: newImage._id,
       });
       await newPoi.save();
 
