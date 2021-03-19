@@ -38,26 +38,14 @@ const Points = {
       const id = request.auth.credentials.id;
       const user = await User.findById(id);
       const data = request.payload;
-      const file = request.payload.imagefile;
-      const image = await ImageStore.uploadImage(request.payload.imagefile);
-      const newImage = new Image({
-        imageURL: image.url,
-      });
-      await newImage.save();
 
       const newPoi = new Poi({
         name: data.name,
         description: data.description,
         contributor: user._id,
-        category: data.category,
-        image: newImage._id,
+        //category: data.category,
       });
       await newPoi.save();
-
-      /*Image upload to cloudinary*/
-      const imageFile = data.image;
-      await ImageStore.uploadImage(imageFile, newPoi._id);
-
       return h.redirect("/report");
     },
   },

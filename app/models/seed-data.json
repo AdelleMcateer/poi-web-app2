@@ -6,14 +6,14 @@
       "lastName": "Simpson",
       "email": "homer@simpson.com",
       "password": "secret",
-      "userScope": "user"
+      "scope": "user"
     },
     "bart": {
       "firstName": "Bart",
       "lastName": "Simpson",
       "email": "bart@simpson.com",
       "password": "secret",
-      "userScope": "admin"
+      "scope": "admin"
     }
   },
   "point": {
