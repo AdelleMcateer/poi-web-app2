@@ -14,7 +14,6 @@ const Admin = {
         const id = request.auth.credentials.id;
         const user = await User.findById(id).lean();
         const users = await User.find({ scope: "user" }).lean().sort("lastName");
-        const scope = user.scope;
         const isadmin = Utils.isAdmin(scope);
 
         return h.view("admin-home", {

@@ -1,5 +1,6 @@
 "use strict";
 
+const Category = require("../models/category");
 const ImageStore = require("../utils/image-store");
 const Image = require("../models/image");
 const Joi = require("@hapi/joi");
@@ -13,7 +14,7 @@ const Points = {
       return h.view("home", { title: "Add an point of interest" });
     },
   },
-  adminhome: {
+  /*adminhome: {
     handler: async function (request, h) {
       const users = await User.find().populate().lean();
       return h.view("admin-menu", {
@@ -22,7 +23,7 @@ const Points = {
         users: users,
       });
     },
-  },
+  },*/
   report: {
     handler: async function (request, h) {
       const user = await User.findById(request.auth.credentials.id);
