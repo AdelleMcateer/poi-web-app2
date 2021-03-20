@@ -23,12 +23,19 @@
       "scope": "admin"
     }
   },
+  "category": {
+    "_model": "Category",
+    "North": {
+      "name": "Tory Island"
+    }
+    },
   "point": {
     "_model": "poi",
     "one": {
       "name": "Tory Island",
       "description": "A well known island of the coast of Donegal.",
-      "contributor": "->users.homer"
+      "contributor": "->users.homer",
+      "category": "->category.north"
     }
   }
 }

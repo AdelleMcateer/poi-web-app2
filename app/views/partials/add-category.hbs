@@ -1,11 +1,18 @@
-<section class="ui raised very padded container segment">
-    <h2><i class="fas fa-upload fa-3x" style="color:rgb(153, 196, 74)" title="Add Category" pos="bottom" uk-tooltip></i></h2>
-    <form class="ui form" action="/add-category" method="POST">
-        <div class="field">
-            <label>Category Name</label>
-            <input type="text" name="name" placeholder="Category" required>
-        </div>
-        <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">Add Category</button>
+<div class="uk-margin uk-width-2xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+    <h3><i class="teal large plus circle icon"></i>Add A New Category</h3>
+
+    <form class="uk-form-stacked uk-text-left "action="/add-category" method="POST">
+
+        <div class="uk-width-1-1@m">
+            <div class="uk-width-1-1@m">
+                <div class="uk-margin">
+                    <input type="text" name="name" id="form-s-text" placeholder="Enter a new Point of Interest..." class="uk-input">
+                </div>
+                <div class="uk-margin">
+                    <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">Add Point of Interest</button>
+                </div>
     </form>
-    {{> error }}
-</section>
+</div>
+</div>
+{{> error }}
+</div>

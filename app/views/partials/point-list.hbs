@@ -14,11 +14,13 @@
         </thead>
         <tbody class="uk-text-left">
         {{#each point}}
+
+
             <tr>
                 <td>{{name}}</td>
                 <td>{{description}}</td>
                 <td>{{contributor.firstName}} {{contributor.lastName}}</td>
-                <td> {{category.category}} </td>
+                <td> {{category}} </td>
 
                 <td><img class="ui large image" src="{{image}}"></td>
                 <td>
@@ -29,6 +31,10 @@
                 </td>
             </tr>
         {{/each}}
+
+
+
+
         </tbody>
     </table>
 </div>
