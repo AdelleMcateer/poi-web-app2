@@ -1,8 +1,11 @@
 "use strict";
-const User = require("../models/user");
+
 const Boom = require("@hapi/boom");
 const Joi = require("@hapi/joi");
-const Utils = require("../utils/isAdmin");
+//const Utils = require("../utils/isAdmin");
+const Admin = require("../models/admin");
+const User = require("../models/user");
+const Poi = require("../models/poi");
 
 const Accounts = {
   index: {
@@ -96,16 +99,26 @@ const Accounts = {
       const { email, password } = request.payload;
       try {
         let user = await User.findByEmail(email);
-        if (!user) {
+        let admin = await Admin.findByEmail(email);
+        if (!user && !admin) {
           const message = "Email address is not registered";
           throw Boom.unauthorized(message);
         }
-        user.comparePassword(password);
-        request.cookieAuth.set({
-          id: user.id,
-          scope: user.scope,
-        });
-        return h.redirect("/home");
+        if (user) {
+          user.comparePassword(password);
+          request.cookieAuth.set({
+            id: user.id,
+            //scope: user.scope,
+          });
+          return h.redirect("/home");
+        } else if (admin) {
+          admin.comparePassword(password);
+          request.cookieAuth.set({ id: admin.id });
+          const points = await Poi.find().populate("addedBy");
+          const users = await User.find();
+
+          return h.view("admin-home");
+        }
       } catch (err) {
         return h.view("login", { errors: [{ message: err.message }] });
       }
@@ -123,8 +136,8 @@ const Accounts = {
       try {
         const id = request.auth.credentials.id;
         const user = await User.findById(id).lean();
-        const scope = user.scope;
-        const isadmin = Utils.isAdmin(scope);
+        //const scope = user.scope;
+        // const isadmin = Utils.isAdmin(scope);
 
         return h.view("settings", { title: "Islands of Ireland Settings", user: user, isadmin: isadmin });
       } catch (err) {

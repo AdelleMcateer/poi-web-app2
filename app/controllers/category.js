@@ -1,11 +1,11 @@
 "use strict";
 
-const CategoryModel = require("../models/category");
+const Category = require("../models/category");
 const Joi = require("@hapi/joi");
 const Point = require("../models/poi");
 const User = require("../models/user");
 
-const Category = {
+const newCategory = {
   addCategory: {
     handler: async function (request, h) {
       try {

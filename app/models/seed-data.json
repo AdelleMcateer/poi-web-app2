@@ -5,22 +5,22 @@
       "firstName": "Homer",
       "lastName": "Simpson",
       "email": "homer@simpson.com",
-      "password": "secret",
-      "scope": "user"
-    },
-    "marge": {
-      "firstName": "Marge",
-      "lastName": "Simpson",
-      "email": "marge@simpson.com",
-      "password": "secret",
-      "scope": "admin"
+      "password": "secret"
     },
     "bart": {
       "firstName": "Bart",
       "lastName": "Simpson",
       "email": "bart@simpson.com",
-      "password": "secret",
-      "scope": "admin"
+      "password": "secret"
+    }
+  },
+  "admins": {
+    "_model": "Admin",
+    "admin": {
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "password": "secret"
     }
   },
   "category": {
