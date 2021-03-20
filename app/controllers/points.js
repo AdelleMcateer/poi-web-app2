@@ -56,6 +56,10 @@ const Points = {
       try {
         const id = request.params.id;
         const point = await Poi.findById(id);
+        const user_id = request.auth.credentials.id;
+        const user = await User.findById(user_id).lean();
+        const scope = user.scope;
+        const isadmin = Utils.isAdmin(scope);
         return h.view("updatepoint", { title: "Islands of Ireland - Update", point: point });
       } catch (err) {
         return h.view("report", { errors: [{ message: err.message }] });

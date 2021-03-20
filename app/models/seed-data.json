@@ -8,6 +8,13 @@
       "password": "secret",
       "scope": "user"
     },
+    "marge": {
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "password": "secret",
+      "scope": "admin"
+    },
     "bart": {
       "firstName": "Bart",
       "lastName": "Simpson",

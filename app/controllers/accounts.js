@@ -52,11 +52,12 @@ const Accounts = {
           lastName: payload.lastName,
           email: payload.email,
           password: payload.password,
-          userScope: "standard",
+          scope: ["user"],
         });
         user = await newUser.save();
         request.cookieAuth.set({
           id: user.id,
+          scope: user.scope,
         });
         return h.redirect("/home");
       } catch (err) {
@@ -70,14 +71,7 @@ const Accounts = {
       return h.view("login", { title: "Login to Islands of Ireland" });
     },
   },
-  homeView: {
-    handler: async function (request, h) {
-      const id = request.auth.credentials.id;
-      const user = await User.findById(id).lean();
-      if (user.userScope == "standard") return h.redirect("/home");
-      else return h.redirect("/admin-home");
-    },
-  },
+
   login: {
     auth: false,
     validate: {

@@ -13,12 +13,13 @@ const Admin = {
       try {
         const id = request.auth.credentials.id;
         const user = await User.findById(id).lean();
-        const users = await User.find({ scope: "user" }).lean().sort("lastName");
+        const allUsers = await User.find({ scope: "user" }).lean().sort("lastName");
+        const scope = user.scope;
         const isadmin = Utils.isAdmin(scope);
 
         return h.view("admin-home", {
           title: "Admin Home - View Users",
-          users: users,
+          users: allUsers,
           isadmin: isadmin,
         });
       } catch (err) {
@@ -36,10 +37,7 @@ const Admin = {
         const poi = await Point.find({ user: user });
 
         await User.findByIdAndDelete(id);
-        return h.view("/admin-home", {
-          title: "Admin Home - View Users",
-          users: users,
-        });
+        return h.view("/admin-home");
       } catch (err) {
         return h.view("admin-home", { errors: [{ message: e.message }] });
       }
@@ -51,13 +49,11 @@ const Admin = {
       try {
         const id = request.params.id;
         const user = await User.findById(id);
-        let poi_list;
         return h.view("list-users", {
           title: "View User",
           userid: user._id,
           firstName: user.firstName,
           lastName: user.lastName,
-          point: point - list,
           isadmin: true,
         });
       } catch (err) {
