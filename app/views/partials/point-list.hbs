@@ -1,14 +1,14 @@
 <div class="uk-margin uk-width-3xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+    <div class="uk-flex uk-flex-center uk-flex-middle uk-grid-small" uk-grid>
     <table class="uk-table">
         <caption>
             Points of interest to Date
         </caption>
         <thead>
-        <th>Island Name</th>
+        <th>Island</th>
         <th>Description</th>
         <th>Contributor</th>
         <th>Category</th>
-        <th>Image</th>
         <th>Update</th>
         <th>Delete</th>
         </thead>
@@ -21,8 +21,6 @@
                 <td>{{description}}</td>
                 <td>{{contributor.firstName}} {{contributor.lastName}}</td>
                 <td>{{category.name}}</td>
-
-                <td><img class="ui large image" src="{{image}}"></td>
                 <td>
                     <a href="/updatepoint/{{_id}}"><button class="submit uk-button uk-button-primary uk-button-small uk-width-1-1">Update</button></a>
                 </td>

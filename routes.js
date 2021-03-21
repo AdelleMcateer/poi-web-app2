@@ -3,7 +3,6 @@
 const Accounts = require("./app/controllers/accounts");
 const Points = require("./app/controllers/points");
 const Gallery = require("./app/controllers/gallery");
-const Category = require("./app/controllers/category");
 
 module.exports = [
   { method: "GET", path: "/", config: Accounts.index },

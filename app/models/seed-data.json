@@ -41,10 +41,28 @@
   "point": {
     "_model": "poi",
     "one": {
-      "name": "Tory Island",
-      "description": "A well known island of the coast of Donegal.",
+      "name": "Tory",
+      "description": "Situated off the coast of County Donegal, it's the most remote inhabited Irish island.",
       "contributor": "->users.homer",
       "category": "->categories.north"
+    },
+    "two": {
+      "name": "Gola",
+      "description": " A small island off the coast of Gweedore, County Donegal, Ireland.",
+      "contributor": "->users.homer",
+      "category": "->categories.north"
+    },
+    "three": {
+      "name": "Aran Islands ",
+      "description": "The Islands of Saints and Scholars located just off Galway and Doolin.",
+      "contributor": "->users.homer",
+      "category": "->categories.west"
+    },
+    "four": {
+      "name": "Tory",
+      "description": "Situated off the coast of County Donegal, it's the most remote inhabited Irish island.",
+      "contributor": "->users.homer",
+      "category": "->categories.east"
     }
   }
 }
