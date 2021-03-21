@@ -3,7 +3,6 @@
 const Accounts = require("./app/controllers/accounts");
 const Points = require("./app/controllers/points");
 const Gallery = require("./app/controllers/gallery");
-const Admin = require("./app/controllers/admin");
 const Category = require("./app/controllers/category");
 
 module.exports = [
@@ -16,6 +15,7 @@ module.exports = [
 
   { method: "GET", path: "/settings", config: Accounts.showSettings },
   { method: "POST", path: "/settings", config: Accounts.updateSettings },
+  { method: "GET", path: "/deleteaccount", config: Accounts.deleteAccount },
 
   { method: "GET", path: "/home", config: Points.home },
   { method: "GET", path: "/report", config: Points.report },
@@ -28,11 +28,6 @@ module.exports = [
   { method: "GET", path: "/gallery", config: Gallery.index },
   { method: "POST", path: "/uploadfile", config: Gallery.uploadFile },
   { method: "GET", path: "/deleteimage/{id}", config: Gallery.deleteImage },
-
-  //  { method: "GET", path: "/admin-home", config: Admin.adminHome },
-  //{ method: "GET", path: "/delete-user/{id}", config: Admin.deleteUser },
-  //{ method: "GET", path: "/view-user/{id}", config: Admin.viewUser },
-  //{ method: "POST", path: "/view-user/{id}", config: Admin.viewUser },
 
   {
     method: "GET",
