@@ -14,7 +14,7 @@
 
 # Overview
 
-##POI Web Application V1
+## POI Web Application V1
 A NodeJs app that implements the core features of a POI web app.
 
 The app supports the following User Management Features:
