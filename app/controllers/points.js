@@ -5,7 +5,6 @@ const ImageStore = require("../utils/image-store");
 const Image = require("../models/image");
 const Joi = require("@hapi/joi");
 const Poi = require("../models/poi");
-const Utils = require("../utils/isAdmin");
 const User = require("../models/user");
 
 const Points = {
@@ -19,7 +18,7 @@ const Points = {
   report: {
     handler: async function (request, h) {
       const user = await User.findById(request.auth.credentials.id);
-      const point = await Poi.find().populate("contributor").populate("contributor").lean();
+      const point = await Poi.find().populate("contributor").populate("category").lean();
       return h.view("report", {
         title: "Points of interest so far",
         point: point,
@@ -52,11 +51,14 @@ const Points = {
       try {
         const id = request.params.id;
         const point = await Poi.findById(id);
+        //const point = await Poi.findById(id).populate("category").lean().sort("-category");
+        const category = await Category.find().lean();
+        const categories = await Category.find().lean().sort("name");
         const user_id = request.auth.credentials.id;
         const user = await User.findById(user_id).lean();
-        const scope = user.scope;
-        const isadmin = Utils.isAdmin(scope);
-        return h.view("updatepoint", { title: "Islands of Ireland - Update", point: point });
+        //const scope = user.scope;
+        //const isadmin = Utils.isAdmin(scope);
+        return h.view("updatepoint", { title: "Islands of Ireland - Update", point: point, categories: categories });
       } catch (err) {
         return h.view("report", { errors: [{ message: err.message }] });
       }

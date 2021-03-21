@@ -136,6 +136,7 @@ const Accounts = {
       try {
         const id = request.auth.credentials.id;
         const user = await User.findById(id).lean();
+        const admin = await Admin.findById(id).lean();
         //const scope = user.scope;
         // const isadmin = Utils.isAdmin(scope);
 

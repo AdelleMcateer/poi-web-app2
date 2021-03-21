@@ -2,7 +2,7 @@
 
 const Category = require("../models/category");
 const Joi = require("@hapi/joi");
-const Point = require("../models/poi");
+const Poi = require("../models/poi");
 const User = require("../models/user");
 
 const newCategory = {
