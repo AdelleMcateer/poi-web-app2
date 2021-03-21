@@ -30,19 +30,19 @@ The following app features are also incorporated:
 - Manage POI Images through Cloudinary.
 
 ## Technologies and Tools
-NodeJs
-Boom
-Cloudinary
-Dotenv
-Glitch 
-Heroku
-Hapi framework
-Hapi Cookies 
-Hapi inert
-Hapi Joi 
-Hapi vision
-Handlebars
-Javascript 
-Mongoose & Mongoose seeder
-MongoDB Atlas - cloud storage
+- NodeJs
+- Boom
+- Cloudinary
+- Dotenv
+- Glitch 
+- Heroku
+- Hapi framework
+- Hapi Cookies 
+- Hapi inert
+- Hapi Joi 
+- Hapi vision
+- Handlebars
+- Javascript 
+- Mongoose & Mongoose seeder
+- MongoDB Atlas - cloud storage
 
