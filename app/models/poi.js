@@ -10,6 +10,10 @@ const poiSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: "Category",
+  },
   image: [
     {
       type: Schema.Types.ObjectID,

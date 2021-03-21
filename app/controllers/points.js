@@ -34,16 +34,16 @@ const Points = {
         const data = request.payload;
 
         //const rawCategory = request.payload.category.split(",");
-        //const rawCategory = request.payload.category;
-        //const category = await Category.findOne({
-        // name: rawCategory,
-        // });
+        const rawCategory = request.payload.category;
+        const category = await Category.findOne({
+          name: rawCategory,
+        });
 
         const newPoi = new Poi({
           name: data.name,
           description: data.description,
           contributor: user._id,
-          // category: category._id,
+          category: category._id,
         });
         await newPoi.save();
         return h.redirect("/report");
@@ -57,8 +57,8 @@ const Points = {
     handler: async function (request, h) {
       try {
         const id = request.params.id;
-        const point = await Poi.findById(id);
-        //const point = await Poi.findById(id).populate("category").lean().sort("-category");
+        //const point = await Poi.findById(id);
+        const point = await Poi.findById(id).populate("category").lean().sort("-category");
         const category = await Category.find().lean();
         const categories = await Category.find().lean().sort("name");
         const user_id = request.auth.credentials.id;

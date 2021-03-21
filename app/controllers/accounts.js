@@ -149,8 +149,6 @@ const Accounts = {
         const id = request.auth.credentials.id;
         const user = await User.findById(id).lean();
         const admin = await Admin.findById(id).lean();
-        //const scope = user.scope;
-        // const isadmin = Utils.isAdmin(scope);
 
         return h.view("settings", { title: "Islands of Ireland Settings", user: user });
       } catch (err) {
