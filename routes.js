@@ -15,6 +15,7 @@ module.exports = [
 
   { method: "GET", path: "/settings", config: Accounts.showSettings },
   { method: "POST", path: "/settings", config: Accounts.updateSettings },
+  { method: "GET", path: "/deleteaccount", config: Accounts.deleteAccount },
 
   { method: "GET", path: "/home", config: Points.home },
   { method: "GET", path: "/report", config: Points.report },
