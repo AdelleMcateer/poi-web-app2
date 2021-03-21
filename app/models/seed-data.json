@@ -23,19 +23,28 @@
       "password": "secret"
     }
   },
-  "category": {
+  "categories": {
     "_model": "Category",
-    "North": {
-      "name": "Tory Island"
-    }
+    "north": {
+      "name": "North"
     },
+    "south": {
+      "name": "South"
+    },
+    "east": {
+      "name": "East"
+    },
+    "west": {
+      "name": "West"
+    }
+  },
   "point": {
     "_model": "poi",
     "one": {
       "name": "Tory Island",
       "description": "A well known island of the coast of Donegal.",
       "contributor": "->users.homer",
-      "category": "->category.north"
+      "category": "->categories.north"
     }
   }
 }

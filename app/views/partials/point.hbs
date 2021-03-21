@@ -21,8 +21,19 @@
                 </div>
             </div>
 
+            <div class="uk-margin">
+                <div class="uk-margin uk-text-left">
+                    <span>Please select a Category</span>
+                    <div class="uk-form-controls ">
+                        {{#each categories }}
+                            <label>
+                                <input class="uk-radio" type="radio" name="candidate" value="{{name}}" /> {{name}}</label>
+                            <br />
+                        {{/each}}
+                    </div>
+                </div>
 
-    <div class="uk-margin">
+    <!--<div class="uk-margin">
         <div>
             <span>Please select a Category</span>
         </div>
@@ -33,7 +44,9 @@
             <label><input class="uk-radio" type="radio" name="categories" value="West" /> West </label><br/>
         </div>
     </div>
-                </div>
+                </div>-->
+            </div>
+        </div>
             </form>
 {{> upload }}
 </div>
