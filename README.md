@@ -14,7 +14,7 @@
 
 # Overview
 
-## POI Web Application V1
+### POI Web Application V1
 A NodeJs app that implements the core features of a POI web app.
 
 The app supports the following User Management Features:
@@ -23,7 +23,7 @@ The app supports the following User Management Features:
 
 The  application supports the following POI Characteristics to an extent:
 - Name, Description, Category, Location & Image
-- 
+
 The following app features are also incorporated:
 - Create, Read, Update & Delete POIs
 - Organise POIs into categories
