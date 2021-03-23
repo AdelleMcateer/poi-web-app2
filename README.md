@@ -8,9 +8,9 @@
 
 **Module:** Enterprise Web Development
 
-**Heroku deployment:**
+**Heroku deployment:** https://dry-taiga-14456.herokuapp.com  
 
-**Glitch deployment:**
+**Glitch deployment:** https://buttercup-global-frame.glitch.me 
 
 # Overview
 
