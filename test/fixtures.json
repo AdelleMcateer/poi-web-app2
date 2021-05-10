@@ -37,5 +37,20 @@
   "newCategory":
   {
     "name": "North-West"
-  }
+  },
+
+  "points": [
+    {
+      "name": "Test",
+      "description": "Test"
+    },
+    {
+      "name": "Test",
+      "description": "Test"
+    },
+    {
+      "name": "Test",
+      "description": "Test"
+    }
+  ]
 }

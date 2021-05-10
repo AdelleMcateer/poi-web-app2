@@ -99,6 +99,33 @@ class PointsService {
     }
   }
 
+  async addPoint(id, point) {
+    try {
+      const response = await axios.post(this.baseUrl + "/api/categories/" + id + "/points", point);
+      return response.data;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async getPoints(id) {
+    try {
+      const response = await axios.get(this.baseUrl + "/api/categories/" + id + "/points");
+      return response.data;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async deleteAllPoints() {
+    try {
+      const response = await axios.delete(this.baseUrl + "/api/points");
+      return response.data;
+    } catch (e) {
+      return null;
+    }
+  }
+
 }
 
 module.exports = PointsService;
