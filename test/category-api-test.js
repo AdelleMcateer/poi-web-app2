@@ -1,76 +1,74 @@
 "use strict";
 
 const assert = require("chai").assert;
-const axios = require("axios");
+const PointsService = require("./points-service");
+const fixtures = require("./fixtures.json");
+const _ = require('lodash');
 
 suite("Category API tests", function () {
+  let categories = fixtures.categories;
+  let newCategory = fixtures.newCategory;
 
-  test("get categories", async function () {
-    const response = await axios.get("http://localhost:3000/api/categories");
-    const categories = response.data;
-    assert.equal(4, categories.length);
+  const pointsService = new PointsService("http://localhost:3000");
 
-    assert.equal(categories[0].name, "North");
-
-    assert.equal(categories[1].name, "South");
-
-    assert.equal(categories[2].name, "East");
-
-    assert.equal(categories[3].name, "West");
+  setup(async function () {
+    await pointsService.deleteAllCategories();
   });
 
-  test("get one category", async function () {
-    let response = await axios.get("http://localhost:3000/api/categories");
-    const categories = response.data;
-    assert.equal(4, categories.length);
-
-    const oneCategoryUrl = "http://localhost:3000/api/categories/" + categories[0]._id;
-    response = await axios.get(oneCategoryUrl);
-    const oneCategory = response.data;
-
-    assert.equal(oneCategory.name, "North");
+  teardown(async function () {
+    await pointsService.deleteAllCategories();
   });
 
   test("create a category", async function () {
-    const categoriesUrl = "http://localhost:3000/api/categories";
-    const newCategory = {
-      name: "North-West",
-    };
+    const returnedCategory = await pointsService.createCategory(newCategory);
+    assert(_.some([returnedCategory], newCategory), "returnedCategory must be a superset of newCategory");
+    assert.isDefined(returnedCategory._id);
+  });
 
-    const response = await axios.post(categoriesUrl, newCategory);
-    const returnedCategory = response.data;
-    assert.equal(201, response.status);
+  test("get category", async function () {
+    const c1 = await pointsService.createCategory(newCategory);
+    const c2 = await pointsService.getCategory(c1._id);
+    assert.deepEqual(c1, c2);
+  });
 
-    assert.equal(returnedCategory.name, "North-West");
+  test("get invalid category", async function () {
+    const c1 = await pointsService.getCategory("1234");
+    assert.isNull(c1);
+    const c2 = await pointsService.getCategory("012345678901234567890123");
+    assert.isNull(c2);
   });
 
   test("delete a category", async function () {
-    let response = await axios.get("http://localhost:3000/api/categories");
-    let categories = response.data;
-    const originalSize = categories.length;
-
-    const oneCategoryUrl = "http://localhost:3000/api/categories/" + categories[0]._id;
-    response = await axios.get(oneCategoryUrl);
-    const oneCategory = response.data;
-    assert.equal(oneCategory.name, "North");
-
-    response = await axios.delete("http://localhost:3000/api/categories/" + categories[0]._id);
-    assert.equal(response.data.success, true);
-
-    response = await axios.get("http://localhost:3000/api/categories");
-    categories = response.data;
-    assert.equal(categories.length, originalSize - 1);
+    let c = await pointsService.createCategory(newCategory);
+    assert(c._id != null);
+    await pointsService.deleteOneCategory(c._id);
+    c = await pointsService.getCategory(c._id);
+    assert(c == null);
   });
 
-  test("delete all categories", async function () {
-    let response = await axios.get("http://localhost:3000/api/categories");
-    let categories = response.data;
-    const originalSize = categories.length;
-    assert(originalSize > 0);
-    response = await axios.delete("http://localhost:3000/api/categories");
-    response = await axios.get("http://localhost:3000/api/categories");
-    categories = response.data;
-    assert.equal(categories.length, 0);
+  test("get all categories", async function () {
+    for (let c of categories) {
+      await pointsService.createCategory(c);
+    }
+
+    const allCategories = await pointsService.getCategories();
+    assert.equal(allCategories.length, categories.length);
+  });
+
+  test("get categories detail", async function () {
+    for (let c of categories) {
+      await pointsService.createCategory(c);
+    }
+
+    const allCategories = await pointsService.getCategories();
+    for (var i = 0; i < categories.length; i++) {
+      assert(_.some([allCategories[i]], categories[i]), "returnedCategory must be a superset of newCategory");
+    }
+  });
+
+  test("get all categories empty", async function () {
+    const allCategories = await pointsService.getCategories();
+    assert.equal(allCategories.length, 0);
   });
 
 });
