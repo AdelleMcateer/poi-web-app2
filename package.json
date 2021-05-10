@@ -24,7 +24,6 @@
     "@hapi/inert": "^6.0.3",
     "@hapi/joi": "^17.1.1",
     "@hapi/vision": "^6.0.1",
-    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "cloudinary": "^1.25.0",
     "dotenv": "^8.2.0",
@@ -35,7 +34,10 @@
     "util.promisify": "^1.1.1"
   },
   "devDependencies": {
+    "axios": "^0.21.1",
+    "chai": "^4.3.4",
     "handlebars": "^4.5.0",
+    "mocha": "^8.4.0",
     "prettier": "^2.2.1"
   },
   "prettier": {
