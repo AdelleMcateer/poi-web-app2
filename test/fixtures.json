@@ -42,15 +42,21 @@
   "points": [
     {
       "name": "Test",
-      "description": "Test"
+      "description": "Test",
+      "latitude": 55.2644,
+      "longitude": -8.2211
     },
     {
       "name": "Test",
-      "description": "Test"
+      "description": "Test",
+      "latitude": 55.2644,
+      "longitude": -8.2211
     },
     {
       "name": "Test",
-      "description": "Test"
+      "description": "Test",
+      "latitude": 55.2644,
+      "longitude": -8.2211
     }
   ]
 }
