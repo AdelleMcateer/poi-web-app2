@@ -17,16 +17,33 @@
                         <input class="{{point.description}}uk-input" id="form-stacked-text" type="text" name="description" placeholder="Description" />
                     </div>
                 </div>
-                <div class="uk-margin">
-                    <div class="uk-form-label"></div>
-                    <div class="uk-form-controls">
-                        <label><input class="uk-radio" type="radio" name="type" value="inhabited" /> Inhabited </label><br />
-                        <label><input class="uk-radio" type="radio" name="type" value="uninhabited" /> Uninhabited </label>
-                    </div>
+              <div class="uk-margin">
+                <label class="uk-form-label" for="form-stacked-text">Latitude</label>
+                <div class="uk-form-controls">
+                  <input class="{{point.latitude}}uk-input" id="form-stacked-text" type="number" name="longitude" step="any"  placeholder="Latitude" required>
                 </div>
-            </div>
-            <div class=" uk-width-1-2@m">
+              </div>
+
+              <div class="uk-margin">
+                <label class="{{point.longitude}}uk-form-label" for="form-stacked-text">Longitude</label>
+                <div class="uk-form-controls">
+                  <input class="uk-input" id="form-stacked-text" type="number" name="latitude" step="any"  placeholder="Longitude" required>
+                </div>
+              </div>
+              <div class="uk-margin">
+                <div class="uk-margin uk-text-left">
+                  <span>Please select a Category</span>
+                  <div class="uk-form-controls ">
+                    {{#each categories}}
+                      <label>
+                        <input class="uk-radio" type="radio" name="category" value="{{name}}" /> {{name}}
+                      </label>
+                      <br />
+                    {{/each}}
+                  </div>
+                </div>
                 <div class="uk-margin">
+                  <div class="uk-margin uk-text-right">
                     <button class="submit uk-button uk-button-primary uk-button-large uk-width--1">Update Point</button>
                 </div>
             </div>

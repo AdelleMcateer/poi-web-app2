@@ -43,6 +43,8 @@ const Points = {
           name: data.name,
           description: data.description,
           contributor: user._id,
+          latitude: data.latitude,
+          longitude: data.longitude,
           category: category._id,
         });
         await newPoi.save();
@@ -77,6 +79,8 @@ const Points = {
         const point = await Poi.findById(id);
         point.name = updatePoint.name;
         point.description = updatePoint.description;
+        point.latitude = updatePoint.latitude;
+        point.longitude = updatePoint.longitude;
         await point.save();
         return h.redirect("/report");
       } catch (err) {

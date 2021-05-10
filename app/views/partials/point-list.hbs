@@ -8,6 +8,8 @@
         <th>Island</th>
         <th>Description</th>
         <th>Contributor</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
         <th>Category</th>
         <th>Update</th>
         <th>Delete</th>
@@ -15,11 +17,12 @@
         <tbody class="uk-text-left">
         {{#each point}}
 
-
             <tr>
                 <td>{{name}}</td>
                 <td>{{description}}</td>
                 <td>{{contributor.firstName}} {{contributor.lastName}}</td>
+                <td>{{latitude}}</td>
+                <td>{{longitude}}</td>
                 <td>{{category.name}}</td>
                 <td>
                     <a href="/updatepoint/{{_id}}"><button class="submit uk-button uk-button-primary uk-button-small uk-width-1-1">Update</button></a>
@@ -29,8 +32,6 @@
                 </td>
             </tr>
         {{/each}}
-
-
 
 
         </tbody>

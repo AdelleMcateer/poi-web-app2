@@ -14,11 +14,19 @@
                         <input class="uk-input" id="form-stacked-text" type="Description" name="description" placeholder="Description..." />
                     </div>
                 </div>
-            </div>
-            <div class=" uk-width-1-2@m">
-                <div class="uk-margin">
-                    <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">Add</button>
+              <div class="uk-margin">
+                <label class="uk-form-label" for="form-stacked-text">Latitude</label>
+                <div class="uk-form-controls">
+                  <input class="uk-input" id="form-stacked-text" type="number" name="longitude" step="any"  placeholder="Latitude" required>
                 </div>
+              </div>
+
+              <div class="uk-margin">
+                <label class="uk-form-label" for="form-stacked-text">Longitude</label>
+                <div class="uk-form-controls">
+                  <input class="uk-input" id="form-stacked-text" type="number" name="latitude" step="any"  placeholder="Longitude" required>
+                </div>
+              </div>
             </div>
 
             <div class="uk-margin">
@@ -32,7 +40,15 @@
                             <br />
                         {{/each}}
                     </div>
+
                 </div>
+
+              <div class=" uk-width-2-2@m">
+                <div class="uk-margin">
+                  <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">Add</button>
+                </div>
+              </div>
+
   <!--  <div class="uk-margin">
         <div>
             <span>Please select a Category</span>
@@ -49,4 +65,5 @@
             </form>
 {{> upload }}
 </div>
+
 </div>
