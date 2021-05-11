@@ -1,11 +1,16 @@
 "use strict";
 
+const Admin = require("../models/admin");
 const Boom = require("@hapi/boom");
 const Joi = require("@hapi/joi");
-//const Utils = require("../utils/isAdmin");
-const Admin = require("../models/admin");
-const User = require("../models/user");
 const Poi = require("../models/poi");
+//const Utils = require("../utils/isAdmin");
+//const sanitizer = require('sanitize')();
+const User = require("../models/user");
+
+const bcrypt = require("bcrypt");          // ADDED
+const saltRounds = 10;                     // ADDED
+
 
 const Accounts = {
   index: {
@@ -50,11 +55,15 @@ const Accounts = {
           const message = "Email address is already registered";
           throw Boom.badData(message);
         }
+
+        const hash = await bcrypt.hash(payload.password, saltRounds);    // ADDED
+
         const newUser = new User({
           firstName: payload.firstName,
           lastName: payload.lastName,
           email: payload.email,
-          password: payload.password,
+          //password: payload.password,
+          password: hash,
           scope: ["user"],
         });
         user = await newUser.save();
@@ -105,14 +114,14 @@ const Accounts = {
           throw Boom.unauthorized(message);
         }
         if (user) {
-          user.comparePassword(password);
+          await user.comparePassword(password);  //Edited
           request.cookieAuth.set({
             id: user.id,
             //scope: user.scope,
           });
           return h.redirect("/home");
         } else if (admin) {
-          admin.comparePassword(password);
+          await admin.comparePassword(password);  //Edited
           request.cookieAuth.set({ id: admin.id });
           const points = await Poi.find().populate("addedBy");
           const users = await User.find();
@@ -185,7 +194,8 @@ const Accounts = {
         user.firstName = userEdit.firstName;
         user.lastName = userEdit.lastName;
         user.email = userEdit.email;
-        user.password = userEdit.password;
+        //user.password = userEdit.password;          // change this to use bcrypt
+        const hash = await bcrypt.hash(userEdit.password, saltRounds);
         await user.save();
         return h.redirect("/settings");
       } catch (err) {

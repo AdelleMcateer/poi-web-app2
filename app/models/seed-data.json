@@ -5,13 +5,13 @@
       "firstName": "Homer",
       "lastName": "Simpson",
       "email": "homer@simpson.com",
-      "password": "secret"
+      "password": "$2a$10$fVufXHNHSxEQITFjG6PRuOSVmNw5A9pO3WaSy0iAEFRjwnC8NuKQ6"
     },
     "bart": {
       "firstName": "Bart",
       "lastName": "Simpson",
       "email": "bart@simpson.com",
-      "password": "secret"
+      "password": "$2a$10$fVufXHNHSxEQITFjG6PRuOSVmNw5A9pO3WaSy0iAEFRjwnC8NuKQ6"
     }
   },
   "admins": {
@@ -20,7 +20,7 @@
       "firstName": "Marge",
       "lastName": "Simpson",
       "email": "marge@simpson.com",
-      "password": "secret"
+      "password": "$2a$10$fVufXHNHSxEQITFjG6PRuOSVmNw5A9pO3WaSy0iAEFRjwnC8NuKQ6"
     }
   },
   "categories": {
