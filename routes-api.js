@@ -20,4 +20,6 @@ module.exports = [
   { method: "GET", path: "/api/categories/{id}/points", config: Points.findByCategory },
   { method: "POST", path: "/api/categories/{id}/points", config: Points.addPoint },
   { method: "DELETE", path: "/api/points", config: Points.deleteAll },
+
+  { method: 'POST', path: '/api/users/authenticate', config: Users.authenticate },
   ];

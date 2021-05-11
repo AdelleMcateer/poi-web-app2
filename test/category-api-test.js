@@ -8,8 +8,20 @@ const _ = require('lodash');
 suite("Category API tests", function () {
   let categories = fixtures.categories;
   let newCategory = fixtures.newCategory;
+  let newUser = fixtures.newUser;
 
   const pointsService = new PointsService("http://localhost:3000");
+
+  suiteSetup(async function () {
+    await pointsService.deleteAllUsers();
+    const returnedUser = await pointsService.createUser(newUser);
+    const response = await pointsService.authenticate(newUser);
+  });
+
+  suiteTeardown(async function () {
+    await pointsService.deleteAllUsers();
+    pointsService.clearAuth();
+  })
 
   setup(async function () {
     await pointsService.deleteAllCategories();
