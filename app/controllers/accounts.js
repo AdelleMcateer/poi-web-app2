@@ -10,6 +10,8 @@ const User = require("../models/user");
 
 const bcrypt = require("bcrypt");          // ADDED
 const saltRounds = 10;                     // ADDED
+const Crypto=require("crypto-js");         // ADDED
+const CryptoSecretKey = process.env.CRYPTO_SECRET_KEY;   // ADDED
 
 
 const Accounts = {
@@ -29,10 +31,19 @@ const Accounts = {
     auth: false,
     validate: {
       payload: {
-        firstName: Joi.string().required(),
-        lastName: Joi.string().required(),
-        email: Joi.string().email().required(),
-        password: Joi.string().required(),
+        //firstName: Joi.string().required(),
+        //firstName: Crypto.AES.encrypt(payload.firstName, CryptoSecretKey),
+       //lastName: Crypto.AES.encrypt(payload.lastName, CryptoSecretKey),
+        // begin with upper case letter and then 2+ alphanumeric lower case letters
+        firstName: Joi.string().alphanum().regex(/^[A-Z]/).min(3).max(15).required(),
+        //lastName: Joi.string().required(),
+        //begin with upper case letter, then any 2+ alphanumeric characters
+        lastName: Joi.string().alphanum().regex(/[A-Z]/).min(3).max(15).required(),
+
+        email: Joi.string().max(30).email().required(),
+        //email: Joi.string().email().required(),
+        //password: Joi.string().required(),
+        password: Joi.string().required().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$/),
       },
       options: {
         abortEarly: false,
