@@ -1,5 +1,5 @@
 {
-  "pointService": "http://localhost:3000",
+  "pointService": "http://localhost:4000",
   "users": [
     {
       "firstName": "Homer",
@@ -34,11 +34,9 @@
       "name": "West"
     }
   ],
-  "newCategory":
-  {
+  "newCategory": {
     "name": "North-West"
   },
-
   "points": [
     {
       "name": "Test",

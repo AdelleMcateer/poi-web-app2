@@ -12,7 +12,9 @@ const Points = {
       strategy: "jwt",
     },
     handler: async function (request, h) {
-      const points = await Point.find();
+      //const points = await Point.find();
+      //return points;
+      const points = await Point.find().populate("category").populate("point");
       return points;
     },
   },

@@ -46,6 +46,8 @@ const Points = {
           latitude: data.latitude,
           longitude: data.longitude,
           category: category._id,
+          //review: review._id,
+          //addedBy: user._id
         });
         await newPoi.save();
         return h.redirect("/report");

@@ -64,8 +64,8 @@ suite("Poi API tests", function () {
     assert.equal(p1.length, points.length);
     await pointService.deleteAllPoints();
     const p2 = await pointService.getPoints(returnedCategory._id);
-    //assert.equal(p2.length, 3); //3 as that is what is in fixtures.json --revisit
     assert.equal(p2.length, 3); //3 as that is what is in fixtures.json --revisit
+    //assert.equal(p2.length, 0); //3 as that is what is in fixtures.json --revisit
     //assert.equal(p2.length, points.length); //3 as that is what is in fixtures.json --revisit
   });
 

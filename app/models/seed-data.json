@@ -72,5 +72,23 @@
       "latitude": 55.1019,
       "longitude": -8.3658
     }
+  },
+  "review": {
+    "_model": "Review",
+    "one": {
+      "comment": "Beautiful Island of the coast of Donegal.",
+      "rating": "Excellent",
+      "name": "->point.one.name"
+    },
+    "two": {
+      "comment": "Not very exciting.",
+      "rating": "Below Average",
+      "name": "->point.two.name"
+    },
+    "three": {
+      "comment": "Nice scenery",
+      "rating": "Above Average",
+      "name": "->point.three.name"
+    }
   }
 }

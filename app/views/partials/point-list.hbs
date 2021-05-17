@@ -13,10 +13,10 @@
         <th>Categories</th>
         <th>Update</th>
         <th>Delete</th>
-        </thead>
-        <tbody class="uk-text-left">
-        {{#each point}}
 
+        </thead>
+        <div class="uk-text-left">
+        {{#each point}}
             <tr>
                 <td>{{name}}</td>
                 <td>{{description}}</td>
@@ -32,7 +32,7 @@
                 </td>
             </tr>
         {{/each}}
-
+        </div>
 
         </tbody>
     </table>

@@ -1,0 +1,36 @@
+<div class="uk-margin uk-width-3xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+  <div class="uk-flex uk-flex-center uk-flex-middle uk-grid-small" uk-grid>
+    <table class="uk-table">
+      <caption>
+        Reviews to Date
+      </caption>
+      <thead>
+    <tr>
+      <th>Point</th>
+      <th>Rating</th>
+      <th>Comment</th>
+    </tr>
+    </thead>
+
+<div class="uk-text-left">
+    {{#each reviews}}
+      <tr>
+        <td> {{name}}</td>
+        <td> {{rating}}</td>
+        <td> {{comment}}</td>
+      </tr>
+    {{/each}}
+    </div>
+  </table>
+</div>
+
+  <div class="uk-margin uk-width-3xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+  <div class="uk-flex uk-flex-left uk-flex-middle uk-grid-small" uk-grid>
+    <table class="uk-table">
+  {{>addreview}}
+    </table>
+  </div>
+  </div>
+</div>
+</div>
+

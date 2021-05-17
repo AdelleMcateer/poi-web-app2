@@ -87,6 +87,13 @@ const Accounts = {
         return h.view("signup", { errors: [{ message: err.message }] });
       }
     },
+    plugins: {
+      disinfect: {
+        disinfectQuery: true,
+        disinfectParams: false,
+        disinfectPayload: true
+      }
+    }
   },
   showLogin: {
     auth: false,

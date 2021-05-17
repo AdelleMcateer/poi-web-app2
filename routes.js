@@ -3,6 +3,7 @@
 const Accounts = require("./app/controllers/accounts");
 const Points = require("./app/controllers/points");
 const Gallery = require("./app/controllers/gallery");
+const Reviews = require('./app/controllers/review');
 
 module.exports = [
   { method: "GET", path: "/", config: Accounts.index },
@@ -27,6 +28,9 @@ module.exports = [
   { method: "GET", path: "/gallery", config: Gallery.index },
   { method: "POST", path: "/uploadfile", config: Gallery.uploadFile },
   { method: "GET", path: "/deleteimage/{id}", config: Gallery.deleteImage },
+
+  { method: 'GET', path: "/listreview", config: Reviews.listReview },
+  { method: 'POST', path: "/addreview", config: Reviews.addReview },
 
   {
     method: "GET",

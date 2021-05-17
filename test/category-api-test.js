@@ -10,7 +10,7 @@ suite("Category API tests", function () {
   let newCategory = fixtures.newCategory;
   let newUser = fixtures.newUser;
 
-  const pointsService = new PointsService("http://localhost:3000");
+  const pointsService = new PointsService("http://localhost:4000");
 
   suiteSetup(async function () {
     await pointsService.deleteAllUsers();
