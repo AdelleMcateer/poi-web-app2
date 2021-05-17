@@ -9,7 +9,7 @@ const reviewSchema = new Schema({
   rating: String,
   Point:{
     type: Schema.Types.ObjectId,
-    ref: 'Point'
+    ref: 'Point '
   },
 });
 
