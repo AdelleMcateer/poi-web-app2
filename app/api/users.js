@@ -5,26 +5,6 @@ const User = require("../models/user");
 const utils = require('./utils.js');
 
 const Users = {
-
-  authenticate: {
-    auth: false,
-    handler: async function (request, h) {
-      try {
-        const user = await User.findOne({ email: request.payload.email });
-        if (!user) {
-          return Boom.unauthorized("User not found");
-        } else if (user.password !== request.payload.password) {
-          return Boom.unauthorized("Invalid password");
-        } else {
-          const token = utils.createToken(user);
-          return h.response({ success: true, token: token }).code(201);
-        }
-      } catch (err) {
-        return Boom.notFound("internal db failure");
-      }
-    },
-  },
-
   find: {
     //auth: false,
     auth: {
@@ -66,23 +46,6 @@ const Users = {
     },
   },
 
-  update: {
-    auth: false,
-    handler: async function (request, h) {
-      const userEdit = request.payload;
-      const user = await User.findById(userEdit._id);
-      user.firstName = userEdit.firstName;
-      user.lastName = userEdit.lastName;
-      user.email = userEdit.email;
-      user.password = userEdit.password;
-      await user.save();
-      if (user) {
-        return { success: true };
-      }
-      return Boom.notFound("id not found");
-    },
-  },
-
   deleteAll: {
     //auth: false,
     auth: {
@@ -107,6 +70,45 @@ const Users = {
       return Boom.notFound("id not found");
     },
   },
+
+  update: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      const userEdit = request.payload;
+      const user = await User.findById(userEdit._id);
+      user.firstName = userEdit.firstName;
+      user.lastName = userEdit.lastName;
+      user.email = userEdit.email;
+      user.password = userEdit.password;
+      await user.save();
+      if (user) {
+        return { success: true };
+      }
+      return Boom.notFound("id not found");
+    },
+  },
+
+  authenticate: {
+    auth: false,
+    handler: async function (request, h) {
+      try {
+        const user = await User.findOne({ email: request.payload.email });
+        if (!user) {
+          return Boom.unauthorized("User not found");
+        } else if (user.password !== request.payload.password) {
+          return Boom.unauthorized("Invalid password");
+        } else {
+          const token = utils.createToken(user);
+          return h.response({ success: true, token: token }).code(201);
+        }
+      } catch (err) {
+        return Boom.notFound("internal db failure");
+      }
+    },
+  },
+
 };
 
 module.exports = Users;

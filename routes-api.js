@@ -3,7 +3,6 @@ const Points = require("./app/api/points");
 const Users = require("./app/api/users");
 
 
-
 module.exports = [
   { method: 'GET', path: '/api/categories', config: Categories.find },
   { method: 'GET', path: '/api/categories/{id}', config: Categories.findOne },
@@ -22,7 +21,8 @@ module.exports = [
   { method: "POST", path: "/api/categories/{id}/points", config: Points.addPoint },
   { method: "DELETE", path: "/api/points", config: Points.deleteAll },
 
-  { method: 'POST', path: '/api/users/authenticate', config: Users.authenticate },
-  { method: "PUT", path: "/api/users/{id}", config: Users.update }
+  { method: "POST", path: "/api/users/authenticate", config: Users.authenticate },
+  { method: "PUT", path: "/api/users/{id}", config: Users.update },
+
 
 ];

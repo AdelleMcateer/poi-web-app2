@@ -125,6 +125,14 @@ class PointsService {
     }
   }
 
+  async deleteOnePoint(id) {
+    try {
+      const response = await axios.delete(this.baseUrl + '/api/points/' + id);
+      return response.data;
+    } catch (e) {
+      return null;
+    }
+  }
 
   async authenticate(user) {
     try {

@@ -56,5 +56,34 @@
       "latitude": 55.2644,
       "longitude": -8.2211
     }
-  ]
+  ],
+  "reviews": [
+    {
+      "comment": "test review1",
+      "rating": "average"
+    },
+    {
+      "comment": "test review2",
+      "rating": "average"
+    },
+    {
+      "comment": "test review3",
+      "rating": "taverage"
+    },
+    {
+      "comment": "test review4",
+      "bestFor": "average"
+    }
+  ],
+  "newReview": {
+    "comment": "test review new",
+    "rating": "average"
+  },
+  "newPoint":
+  {
+    "name": "New Test",
+    "description": "New Test",
+    "latitude": 55.2644,
+    "longitude": -8.2211
+  }
 }

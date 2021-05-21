@@ -1,4 +1,3 @@
-
 'use strict';
 
 const Boom = require("@hapi/boom");
@@ -23,11 +22,11 @@ const Categories = {
     //auth: false,
     handler: async function(request, h) {
       try {
-      const category = await Category.findOne({ _id: request.params.id });
-      if (!category){
-        return Boom.notFound("No Category with this id");
-      }
-      return category;
+        const category = await Category.findOne({ _id: request.params.id });
+        if (!category){
+          return Boom.notFound("No Category with this id");
+        }
+        return category;
       } catch (err) {
         return Boom.notFound("No Category with this id");
       }
@@ -76,6 +75,5 @@ const Categories = {
   }
 
 };
-
 
 module.exports = Categories;

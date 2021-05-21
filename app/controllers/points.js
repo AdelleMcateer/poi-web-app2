@@ -6,6 +6,7 @@ const Image = require("../models/image");
 const Joi = require("@hapi/joi");
 const Poi = require("../models/poi");
 const User = require("../models/user");
+const sanitizeHtml = require('sanitize-html');
 
 const Points = {
   home: {
@@ -40,8 +41,8 @@ const Points = {
         });
 
         const newPoi = new Poi({
-          name: data.name,
-          description: data.description,
+          name: sanitizeHtml(data.name),
+          description: sanitizeHtml(data.description),
           contributor: user._id,
           latitude: data.latitude,
           longitude: data.longitude,
@@ -79,10 +80,10 @@ const Points = {
         const updatePoint = request.payload;
         const id = request.params.id;
         const point = await Poi.findById(id);
-        point.name = updatePoint.name;
         point.description = updatePoint.description;
         point.latitude = updatePoint.latitude;
         point.longitude = updatePoint.longitude;
+
         await point.save();
         return h.redirect("/report");
       } catch (err) {

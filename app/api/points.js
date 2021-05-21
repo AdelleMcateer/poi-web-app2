@@ -6,6 +6,7 @@ const Boom = require("@hapi/boom");
 const utils = require("./utils.js");
 
 const Points = {
+
   findAll: {
     //auth: false,
     auth: {
@@ -54,10 +55,24 @@ const Points = {
       strategy: "jwt",
     },
     handler: async function (request, h) {
-      await [Point].deleteMany({});
+      await Point.deleteMany({});
       return { success: true };
     },
   },
+
+  deleteOne: {
+    auth: {
+      strategy: "jwt",
+    },
+    //auth: false,
+    handler: async function (request, h) {
+      const point = await Point.remove({_id: request.params.id});
+      if (point.deletedCount == 1) {
+        return {success: true};
+      }
+      return Boom.notFound('id not found for selected point of interest');
+    }
+  }
 
 };
 

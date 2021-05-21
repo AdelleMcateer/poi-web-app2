@@ -9,6 +9,7 @@ suite("Poi API tests", function () {
   let points = fixtures.points;
   let newCategory = fixtures.newCategory;
   let newUser = fixtures.newUser;
+  let newPoint = fixtures.newPoint
 
   const pointService = new PointService(fixtures.pointService);
 
@@ -54,6 +55,7 @@ suite("Poi API tests", function () {
     }
   });
 
+
   test("delete all pois", async function () {
     const returnedCategory = await pointService.createCategory(newCategory);
     for (var i = 0; i < points.length; i++) {
@@ -64,7 +66,7 @@ suite("Poi API tests", function () {
     assert.equal(p1.length, points.length);
     await pointService.deleteAllPoints();
     const p2 = await pointService.getPoints(returnedCategory._id);
-    assert.equal(p2.length, 3); //3 as that is what is in fixtures.json --revisit
+    assert.equal(p2.length, 0); //3 as that is what is in fixtures.json --revisit
     //assert.equal(p2.length, 0); //3 as that is what is in fixtures.json --revisit
     //assert.equal(p2.length, points.length); //3 as that is what is in fixtures.json --revisit
   });
