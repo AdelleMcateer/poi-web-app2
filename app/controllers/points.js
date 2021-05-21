@@ -44,8 +44,8 @@ const Points = {
           name: sanitizeHtml(data.name),
           description: sanitizeHtml(data.description),
           contributor: user._id,
-          latitude: data.latitude,
-          longitude: data.longitude,
+          latitude:  sanitizeHtml(data.latitude),
+          longitude:  sanitizeHtml(data.longitude),
           category: category._id,
           //review: review._id,
           //addedBy: user._id
