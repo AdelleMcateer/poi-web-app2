@@ -8,20 +8,18 @@
 
 **Module:** Enterprise Web Development
 
-**Heroku deployment:** https://dry-taiga-14456.herokuapp.com  
-
-**Glitch deployment:** https://buttercup-global-frame.glitch.me 
+**Glitch deployment:** https://level-young-exoplanet.glitch.me/
 
 # Overview
 
-### POI Web Application V1
+### POI Web Application V2
 A NodeJs app that implements the core features of a POI web app.
 
 The app supports the following User Management Features:
 - Sign up / Login in / Delete Account
 - Simple User Admin Dashboard - not fully implemented yet.
 
-The  application supports the following POI Characteristics to an extent:
+The  application supports the following POI Characteristics:
 - Name, Description, Category, Location & Image
 
 The following app features are also incorporated:
@@ -36,7 +34,6 @@ The following app features are also incorporated:
 - Cloudinary - image uplaod and storage.
 - Dotenv - to store environment variables for db and Cloudinary.
 - Glitch - backup deployment (this is currently a few steps behind this master commit.)
-- Heroku - backup deployment (also currently behind this master commit.)
 - Hapi framework 
 - Hapi Cookies: Authentication/Cookies
 - Hapi inert - handler methods for serving static files and directories with the hapi web framework.
