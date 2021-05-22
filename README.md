@@ -28,11 +28,24 @@ The following app features are also incorporated:
 - POI Image uplaod through Cloudinary.
 - Basic account admin and possible to delete user account.
 
+## API functinality & Tests
+- Basic API endpoints exposed
+- Basic Unit Tests suite
+
+## Authentication & Security
+- JWT
+- Password hashing & salting
+- Filtering & Santization
+
 ## Technologies and Tools
 - NodeJs
+- axios 
 - Boom: logging error messages.
+- Bcrypt.
+- chai
 - Cloudinary - image uplaod and storage.
 - Dotenv - to store environment variables for db and Cloudinary.
+- Disinfect
 - Glitch - backup deployment (this is currently a few steps behind this master commit.)
 - Hapi framework 
 - Hapi Cookies: Authentication/Cookies
@@ -40,10 +53,13 @@ The following app features are also incorporated:
 - Hapi Joi -  to ensure validation of key information.
 - Hapi vision - Template rendering support for hapi.js.
 - Handlebars - logic-less templating engine.
+- Hapi-auth-jwt2
+- Jsonwebtoken
 - Javascript 
+- lodash
+- mocha
 - Mongoose - object modelling for node.js.
 - Mongoose seeder - test the application with the same DB.
 - MongoDB Atlas - Cloud storage.
-
-
+- Sanitize-html
 
