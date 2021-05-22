@@ -35,7 +35,7 @@ async function init() {
   await server.register(Inert);
   await server.register(Vision);
   await server.register(Cookie);
-  await server.register(require("hapi-auth-jwt2"));
+  await server.register(require('hapi-auth-jwt2'));
   server.validator(require("@hapi/joi"));
   server.views({
     engines: {
@@ -48,6 +48,13 @@ async function init() {
     layout: true,
     isCached: false,
   });
+
+  server.auth.strategy("jwt", "jwt", {
+    key: "secretpasswordnotrevealedtoanyone",
+    validate: utils.validate,
+    verifyOptions: { algorithms: ["HS256"] },
+  });
+
   server.auth.strategy("session", "cookie", {
     cookie: {
       name: process.env.cookie_name,
@@ -56,11 +63,7 @@ async function init() {
     },
     redirectTo: "/",
   });
-  server.auth.strategy("jwt", "jwt", {
-    key: "secretpasswordnotrevealedtoanyone",
-    validate: utils.validate,
-    verifyOptions: { algorithms: ["HS256"] },
-  });
+
 
   //Register disinfect plugin
   await  server.register({

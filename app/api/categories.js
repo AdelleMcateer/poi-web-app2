@@ -2,6 +2,8 @@
 
 const Boom = require("@hapi/boom");
 const Category = require('../models/category');
+const utils = require('./utils.js');
+const User = require('../models/user');
 
 const Categories = {
   find: {
